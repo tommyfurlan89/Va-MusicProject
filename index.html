@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+	<html lang="en">
+		
+		<head>
+			<meta charset='utf-8'>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+			<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+			<link href="img/favicon.png" rel="shortcut icon">
+			<title>Musical Features Visual Analytics</title>
+			
+			<!-- CSS -->
+			<link href="css/bootstrap.css" rel="stylesheet" />
+			<link href="css/style.css" rel="stylesheet" />
+			<link href="css/font-awesome.css" rel="stylesheet" />
+			<link href="css/style-bootstrap.css" rel="stylesheet" />
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
+			
+
+			<!--customer js-->
+			<script src="js/jquery-1.11.1.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
+
+
+
+
+		    <!-- richiamiamo D3 -->
+   			 <script type="text/javascript" src="D3/d3.min.js"></script>
+   			 <script src="D3/d3.tip.js"></script>
+
+			<!-- Sistemiamo i file JS in bottom place per ridurre il loading time -->
+			
+			<script src="js/bootstrap.js"></script>
+			<script src="http://dimplejs.org/dist/dimple.v2.2.0.min.js"></script>
+			<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+			<!-- Nostro JS -->
+		  	<script src="js/utility.js"></script>
+			<script src="js/dataset.js"></script>
+			<script src="js/musicvisualization.js"></script>
+			
+
+   			
+
+
+		</head>
+
+<body >
+
+	<!-- Impostazioni Nav -->
+<div class="navbar navbar-inverse navbar-fixed-top scroll-me" id="menu-section" >
+		<div class="container" style="display: inline; float: left !important;">
+			<div class='row'>
+				<div class='col-md-4'>
+					<div class="navbar-header" >
+						<div class="navbar nav_title" style="margin: 0 auto !important;float: left;">
+							<a class="navbar-brand" href="index.html">
+							<!--<img src="img/logo.gif" style="width:30px; height:30px; float: left;"> -->
+							<span id="projectname">MUSICAL FEATURES</span>
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<div class='col-md-offset-3 col-md-4' style="font-family: 'candianidin2regular';">
+					<div id="selector" class="hide">
+					<div class='col-md-5' style="padding-top:5%;color:white;padding-right: 0%;text-align: right;">Select genre:</div>
+					<div class='col-md-7' style='padding-top:3%'>
+						<form id="form_genre">
+							<select id="genre" class="selectpicker" required="" style='width:100%;opacity:0.9 !important;'>
+								</select>
+						</form >
+					</div>
+				</div>
+			</div>
+				<div class='col-md-1'>
+					<div class="navbar-collapse collapse" >
+						<!-- FAQ -->
+						<ul class="nav navbar-nav navbar-right">
+						<li><a href="#" data-toggle="modal" data-target="#FAQModal">
+							<i class="fa fa-info-circle fa-spin fa-2_5x fa-cream" aria-hidden="true"></i>
+							</a>
+						</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>  
+<!-- Fine Nav -->
+		
+		<!-- Container per le visualizzazioni -->
+<div class="container" id="padding_container"> 
+
+<div id="container_intro">
+	<div class="row"> 
+	<div class="col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-12 col-lg-offset-0 " style="text-align: center;">  
+					<div class="col-md-offset-3 col-sm-offset-2 col-md-6 col-sm-8">
+					<svg id="tape" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="600px" height="380px" viewBox="0 0 600 380" enable-background="new 0 0 600 380" xml:space="preserve">
+						<path fill="#827652" d="M169.481,133.275c-21.404,0-38.755,17.351-38.755,38.755c0,21.405,17.352,38.756,38.755,38.756
+							s38.755-17.351,38.755-38.756C208.237,150.626,190.885,133.275,169.481,133.275z M171.314,202.551
+							c-16.855,0-30.521-13.664-30.521-30.521s13.666-30.521,30.521-30.521c16.857,0,30.522,13.665,30.522,30.521
+							S188.171,202.551,171.314,202.551z"></path>
+						<path fill="#827652" d="M427.451,133.275c-21.403,0-38.755,17.351-38.755,38.755c0,21.405,17.352,38.756,38.755,38.756
+							c21.404,0,38.756-17.351,38.756-38.756C466.207,150.626,448.855,133.275,427.451,133.275z M429.284,202.551
+							c-16.856,0-30.522-13.664-30.522-30.521s13.666-30.521,30.522-30.521s30.521,13.665,30.521,30.521S446.141,202.551,429.284,202.551z
+							"></path>
+						<path fill="#513B33" d="M168.1,53.512c-64.606,0-116.98,52.374-116.98,116.98s52.374,116.981,116.98,116.981
+							c64.606,0,116.98-52.375,116.98-116.981S232.706,53.512,168.1,53.512z M170.834,216.023c-25.146,0-45.531-20.385-45.531-45.532
+							c0-25.146,20.385-45.531,45.531-45.531s45.532,20.385,45.532,45.531C216.366,195.639,195.98,216.023,170.834,216.023z"></path>
+						<path fill="#513B33" d="M421.081,71.938c-49.701,0-89.993,40.292-89.993,89.994c0,49.702,40.292,89.993,89.993,89.993
+							c49.702,0,89.995-40.291,89.995-89.993C511.076,112.231,470.783,71.938,421.081,71.938z M429.047,216.023
+							c-25.146,0-45.532-20.385-45.532-45.532c0-25.146,20.386-45.531,45.532-45.531s45.532,20.385,45.532,45.531
+							C474.579,195.639,454.193,216.023,429.047,216.023z"></path>
+						<path fill="#BCAF7A" d="M586.382,0H18.527L0,12.155v346.759l19.351,20.558h557.797l22.02-14.447V13.583L586.382,0z M171.19,206.38
+							c-19.434,0-35.189-15.755-35.189-35.19c0-19.434,15.755-35.189,35.189-35.189c19.435,0,35.189,15.755,35.189,35.189
+							C206.379,190.625,190.625,206.38,171.19,206.38z M361.402,177.402h-125.54v-41.401h125.54V177.402z M429.402,206.38
+							c-19.435,0-35.189-15.754-35.189-35.19c0-19.434,15.755-35.189,35.189-35.189c19.437,0,35.189,15.755,35.189,35.189
+							C464.592,190.626,448.839,206.38,429.402,206.38z"></path>
+						<path fill="#A59968" d="M550.188,23.776H49.455L24.964,48.503v221.985v14.131h547.336v-9.931V50.168L550.188,23.776z M171.19,206.38
+							c-19.434,0-35.189-15.755-35.189-35.19c0-19.434,15.755-35.189,35.189-35.189c19.435,0,35.189,15.755,35.189,35.189
+							C206.379,190.625,190.625,206.38,171.19,206.38z M361.402,177.402h-125.54v-41.401h125.54V177.402z M429.402,206.38
+							c-19.435,0-35.189-15.754-35.189-35.19c0-19.434,15.755-35.189,35.189-35.189c19.437,0,35.189,15.755,35.189,35.189
+							C464.592,190.626,448.839,206.38,429.402,206.38z"></path>
+						<path fill="#EFE2AC" d="M544.314,31.623H55.981L32.098,54.815v208.212v13.255H565.88v-9.314V56.377L544.314,31.623z M427.501,219.22
+							H171.428c-26.789,0-48.504-21.717-48.504-48.505s21.715-48.504,48.504-48.504h256.073c26.788,0,48.504,21.716,48.504,48.504
+							S454.289,219.22,427.501,219.22z"></path>
+						<polygon fill="#A0935E" points="506.438,379.472 102,379.472 121.973,291.208 489.319,291.208 "></polygon>
+						<polygon fill="#DED2A2" points="489.319,291.849 93.322,379.472 113.689,289.359 488.309,289.359 "></polygon>
+						<polygon fill="#C6BB85" points="501.684,379.472 97.246,379.472 117.218,293.071 484.564,293.071 "></polygon>
+						<g>
+							<circle fill="#353635" cx="155.022" cy="359.024" r="13.552"></circle>
+							<circle fill="#353635" cx="446.046" cy="359.024" r="13.552"></circle>
+							<path fill="#353635" d="M223.499,338.339h-14.267c-3.151,0-5.706,2.556-5.706,5.707v9.272c0,3.152,2.555,5.706,5.706,5.706h14.267
+								c3.151,0,5.706-2.554,5.706-5.706v-9.272C229.205,340.895,226.65,338.339,223.499,338.339z"></path>
+							<path fill="#353635" d="M393.263,338.339h-14.266c-3.151,0-5.706,2.556-5.706,5.707v9.272c0,3.152,2.555,5.706,5.706,5.706h14.266
+								c3.151,0,5.706-2.554,5.706-5.706v-9.272C398.969,340.895,396.414,338.339,393.263,338.339z"></path>
+						</g>
+						<g>
+							<g>
+								<path fill="#353635" d="M132.736,141.47H32.098v21.399h91.467C124.858,154.921,128.078,147.624,132.736,141.47z"></path>
+								<path fill="#353635" d="M466.193,141.47c4.657,6.154,7.879,13.452,9.171,21.399h90.516V141.47H466.193z"></path>
+								<path fill="#353635" d="M427.501,219.22H171.428c-7.306,0-14.229-1.625-20.442-4.52H32.098v48.327v13.255H565.88v-9.314V214.7
+									H447.943C441.729,217.595,434.808,219.22,427.501,219.22z"></path>
+							</g>
+							<g>
+								<path fill="#D21F1B" d="M32.098,181.89v21.398H135.49c-5.412-5.966-9.345-13.292-11.258-21.398H32.098z"></path>
+								<path fill="#D21F1B" d="M474.696,181.89c-1.912,8.106-5.847,15.433-11.258,21.398H565.88V181.89H474.696z"></path>
+							</g>
+						</g>
+						<text transform="matrix(1 0 0 1 75.1792 100.9043)" style="font-size:75px;fill:#1E1E1E; font-family:candianidin2regular; text-align:center">Top 10 Genres</text>
+						</svg>
+					</div>  <!-- End immagine cassettina -->
+				</div>
+			</div> <!-- end row cassettina-->
+		<div class="row"> 
+			<div class="col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-12 col-lg-offset-0 " style="text-align: center;"> 
+				<div id="buttonwait">
+				<a class="btn btn-lg btn-default " id="play"onclick="play()" style='margin-right:3%'>
+  				<i class="fa fa-play  fa-1.5x "></i> PLAY</a>
+  				<a class="btn btn-lg btn-default " id="stop" onclick="stop()">
+  				<i class="fa fa-stop fa-1.5x "></i> STOP</a>
+			</div>
+			</div>
+		</div>
+	</div> <!-- end container Pre-->
+
+	<div id="container_vis" class="hide">
+    <!-- Riga dei Filter -->
+    <div class="row"> 
+        <!-- consideriamo l'intera riga con 12 colonne, indicando anche eventuali offset -->
+        <!-- <div class="col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-12 col-lg-offset-0 " style="text-align: center; height: 150px;"> 
+            Lo spazio dedicato al filter del Genre -->
+                    
+            <!-- Lo spazio dedicato ai Threshol di Valence e Energy 
+            <div class="col-sm-5 col-sm-offset-0 col-md-5 col-md-offset-0 col-lg-5 col-lg-offset-0 " style="font-size: 11px;margin: 10px auto 0 auto;"> -->
+            
+            <!--
+            <div id="inputSlider">
+    			<div>
+    				<i class="fa fa-bolt "></i> <span>Energy level</span>
+        			<input type="text" id="range_energy" value="" name="range_energy" />
+    			</div> 
+			</div>
+			<div id="inputSlider">
+    			<div>
+    				<i class="fa fa-thumbs-o-up"></i> <span>Valence level</span>
+        			<input type="text" id="range_valence" value="" name="range_valence" />
+    			</div> 
+			</div>
+		
+          </div>-->
+           <!--Assegniamo spazio bianco alla colonna più a destra
+           <div class="col-sm-1 col-sm-offset-0 col-md-1 col-md-offset-0 col-lg-1 col-lg-offset-0 ">&nbsp;</div>
+            </div>-->
+          </div> <!-- chiusura riga Filter-->
+
+
+		
+       	 <!-- Riga BAR CHART Genre-->
+     <div class="row"> 
+		<div id="bar_cont" class="col-sm-12 col-sm-offset-0 col-md-8 col-md-offset-0 col-lg-8 col-lg-offset-0 " style="text-align: center; height: 500px;"> 
+			
+     	</div>
+		<div class='col-sm-12 col-md-4 col-lg-4'>
+			<div class='alert alert-warning' style='margin-top:10%;height:400px'>
+				<h2>
+				Genre Barchart
+				</h2>
+				The purpose of this chart is to show the division in genre of the 10.000 songs that we have analyzed.
+		
+			</div>
+		</div>
+		
+   	</div>  <!-- End Genre -->
+
+
+       	<!-- Riga relativa a Mode-Key + Duration&Loudness-->
+    <div class="row"> 
+		<div class="col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-12 col-lg-offset-0 " style="text-align: center; height: 500px;">
+			<div class='row'>
+				<div class="col-sm-6 col-sm-offset-0 col-md-6 col-md-offset-0 col-lg-6 col-lg-offset-0 "> 
+				<div id="radarchart">
+					<div id="radar">
+					</div>
+				</div>
+
+			 </div>
+			 <div class="col-sm-6 col-md-6 col-lg-6">
+				<div class="row">
+						<div id="bubble_chart">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 col-md-12 col-lg-12">
+							<div class="btn-group" role="group" aria-label="...">
+							  <button type="button" class="btn btn-default d_v" value="duration" style="font-family: 'candianidin2regular';">Duration</button>
+							  <button type="button" class="btn btn-default d_v" value="loudness" style="font-family: 'candianidin2regular';">Loudness</button>
+							</div>
+						</div>
+					</div>
+				</div>
+		 </div>
+
+		 
+		 <div class='row'>
+			 <div class='col-sm-6 col-md-6 col-lg-6'>
+				 <div class='alert alert-warning' style='margin-top:10%;height:125px;text-align:left'>
+						<h3 style="color: #8a6d3b;margin-top:0px">Radar chart</h3>
+						This is a representation of the keys in which the songs are written, keeping in mind the mode used to play them. <br>
+						The red area indicates the mode major, meanwhile the blue one the mode minor.
+						
+					</div>
+			 </div>
+			 <div class='col-sm-6 col-md-6 col-lg-6'>
+			 <div class='alert alert-warning' style='margin-top:10%;height:125px;text-align:left'>
+					<h3 style="color: #8a6d3b;margin-top:0px">Platelets chart</h3>
+					In this chart, we can observe some statistics on the duration and the loudness of the songs.
+				</div>
+		 </div>
+		 </div>
+         <div class="col-sm-4 col-sm-offset-0 col-md-4 col-md-offset-0 col-lg-4 col-lg-offset-0 "> 
+			
+		
+         </div>
+		 
+     </div>
+      </div>  <!-- End Mode&Key + Duration&Loudness -->
+
+
+    <!-- Riga divisa in tre colonne: Time&TimeSignasture&Dancability-->
+     <div class="row"> 
+		<div class="col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-12 col-lg-offset-0 " style="text-align: center; height: 500px;">
+			<div class="col-sm-4 col-sm-offset-0 col-md-4 col-md-offset-0 col-lg-4 col-lg-offset-0 "> 
+			<div class='row'>
+				<div id="piedonut">
+					<div id="piedonutlow">
+					</div>
+				</div>
+			</div>
+			<div class='row'>
+				<h3 style="margin-left: -60px;margin-top: 1px; font-family: 'candianidin2regular';">Danceability low<div id="danceability_l"></div></h3>
+			</div>
+         </div>
+         <div class="col-sm-4 col-sm-offset-0 col-md-4 col-md-offset-0 col-lg-4 col-lg-offset-0 "> 
+			<div class='row'>
+				<div id="piedonut">
+					<div id="piedonutmedium">
+					</div>
+				</div>
+			</div>
+			<div class='row'>
+				<h3 style="margin-left: -60px;margin-top: 1px; font-family: 'candianidin2regular';">Danceability medium<div id="danceability_m"></div></h3>
+			</div>
+         </div>
+         <div class="col-sm-4 col-sm-offset-0 col-md-4 col-md-offset-0 col-lg-4 col-lg-offset-0 "> 
+			<div class='row'>
+				<div id="piedonut">
+					<div id="piedonuthigh">
+					</div>
+				</div>
+			</div>
+			<div class='row'>
+				<h3 style="margin-left: -60px;margin-top: 1px; font-family: 'candianidin2regular';">Danceability high<div id="danceability_h"></div></h3>
+			</div>
+         </div>
+     </div>
+   </div>  <!-- End  Time&TimeSignasture&Dancability-->
+   <div class='row'>
+		<div class='col-sm-12 col-md-12 col-lg-12'>
+			 <div class='alert alert-warning'>
+					<h3 style="color: #8a6d3b;margin-top:0px">Donutpie chart</h3>
+					Here is shown the correlation between the danceability of the songs and the features of tempo and time signature. 
+					So, for the three types of danceability, are shown the distributions of the rhythmic features. 
+				</div>
+		 </div>
+	</div>
+
+
+   <!-- Riga relativa a Valence e Energy-->
+     <div class="row">
+	 <div class='col-sm-12 col-md-4 col-lg-4'>
+			<div class='alert alert-warning' style='margin-top:10%;height:400px'>
+					<h3 style="color: #8a6d3b;margin-top:0px">Grouped Bar Chart</h3>
+					This is an analysis of the values of energy and valence of the songs. <br>
+					The blue bars indicate the occurences for the energy and the orange ones those for the valence.
+				</div>
+		 </div>
+		<div class="col-sm-12 col-sm-offset-0 col-md-8 col-md-offset-0 col-lg-8 col-lg-offset-0" style="text-align: center; height: 500px;">
+			<div id="groupedbar">
+			</div>
+         </div>
+      </div>  <!-- End Acousticness&Instrumentalness&Speechness -->
+
+    <!-- Riga relativa a Acousticness&Instrumentalness&Speechness-->
+     <div class="row" style='margin-top:5%'> 
+		<div class="col-sm-12 col-sm-offset-0 col-md-8 col-md-offset-0 col-lg-8 col-lg-offset-0" style="text-align: center; height: 500px;">
+			<div id="statchart">
+			</div>
+         </div>
+		 <div class='col-sm-12 col-md-4 col-lg-4'>
+			 <div class='alert alert-warning' style='height:400px'>
+					<h3 style="color: #8a6d3b;margin-top:0px">Bubble Chart</h3>
+					In every bubble are shown the occurences of the values for the features of acousticness, instrumentalness and speechiness.
+				</div>
+		 </div>
+      </div>  <!-- End Acousticness&Instrumentalness&Speechness -->
+    </div> <!-- end container visualization-->
+	
+	</div> <!-- end container-->
+			
+
+	<!-- Fancybox FAQ -->
+    <div class="modal fade" id="FAQModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" id="modal-faq-header">
+                   <h2 class="modal-title" id="legendModalTitle">INFO</h2>
+                </div>
+                <div class="modal-body" id="modal-faq-body">
+                	<div id="box_fancy">
+                		<h3><b>Developer</b></h3>
+                			<i class="fa fa-graduation-cap fa-fw" aria-hidden="true"></i><a id="dev"href="mailto:tommy.furlan@hotmail.it">  Tommaso Furlan</a> <span>(Business Informatics)</span><br>
+                			<i class="fa fa-graduation-cap fa-fw" aria-hidden="true"></i><a id="dev"href="mailto:mariateresarossi00@gmail.com">  Maria Teresa Rossi</a> <span>(Business Informatics)</span>
+                	</div>
+
+                	<div id="box_fancy">
+                		<h3><b>Filter Legend</b></h3>
+                		<div class="faq"><img src="img/legend/legend_tendina.png" alt=""/><span>Dropdown Menu (Genre)</span></div>
+                <!--
+                    <div class="faq"><img src="img/legend/legend_level.png" alt=""/><span>Adjustable Threshold (Energy - Valence)</span></div>
+                -->
+                	</div>
+
+                	<div id="box_fancy">
+                		<h3><b>Graphics Legend</b></h3>
+                	 <div class="faq"><img src="img/legend/legend_horbar.png" alt=""/><span>Horizontal Bar Chart (Genre)</span></div>
+                	<div class="faq"><img src="img/legend/legend_bubble.png" alt=""/><span>Bubble Chart (Duration or Loudness)</span></div>
+                	<div class="faq"><img src="img/legend/legend_radar.png" alt=""/><span>Radar Chart (Key - Mode)</span></div>
+                    <div class="faq"><img src="img/legend/legend_piedonutchart.png" alt=""/><span>Ring Pie Chart (Tempo - Tempo Signature - Danceability)</span></div>
+                    <div class="faq"><img src="img/legend/legend_groupedbar.png" alt=""/><span>Grouped Bar Chart (Valence/Energy)</span></div>
+                    <div class="faq"><img src="img/legend/legend_statistic.png" alt=""/><span>Statistical Chart (Speechiness - Acousticness - Instrumentalness)</span></div>
+                	</div>
+                    <hr>
+                    <div id="relation"><a aria-hidden="true" href="doc/abstract.pdf" target=”_blank”><i class='fa fa-file-pdf-o'></i> Abstract</a></div>
+                    <div id="relation"><a aria-hidden="true" href="doc/report.pdf" target=”_blank”><i class='fa fa-file-pdf-o'></i> Documentation</a></div>
+                </div>
+                <div class="modal-footer" id="modal-faq-footer">
+                    <button type="button" class="btn btn-default btn-sm" onclick="location.href='https://github.com/tommyfurlan89/Va-MusicProject'" id="btn_git"><span class="fa fa fa-github "></span> Download</button>
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" id="buttonmodal"><span class="fa fa-music"></span> Close</button>
+                </div>
+            </div>
+        </div>  <!-- End  Fancybox FAQ -->
+
+
+		<!--
+			<footer class="footer">
+			  <div class="container">
+				<p class="text-muted">© 2016 A.A.A - Associazione Arrosticini Anonimi di Tommy Furlan & EmmeTi Rossi</p>
+			  </div>
+			</footer>
+		-->
+
+	
+	
+		<script>
+  	
+  	$(document).ready (
+	function () {
+		start();
+	});
+	
+	
+
+	
+	</script>
+			
+		
+		</body>
+
+	</html>
